@@ -1,1 +1,1 @@
-# Quiz-JS-Project2
+# Quiz-JS-Project3
