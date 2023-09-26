@@ -19,6 +19,7 @@ form.addEventListener('submit', function (event) {
   event.preventDefault(); 
   const isFormValid = validateForm();
   if (isFormValid) {
+    
     window.location.href="../pages/login.html";
   }
 });

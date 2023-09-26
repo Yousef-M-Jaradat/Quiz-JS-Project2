@@ -1,6 +1,4 @@
 
-var questions;
-const http = new XMLHttpRequest();
 window.onload = function () {
     var minute = 4;
     var sec = 59;
@@ -11,7 +9,7 @@ window.onload = function () {
 
         if (sec == 0) {
             minute--;
-            sec = 60;
+            sec = 59;
 
             if (minute == 0) {
                 window.location.href = '../Pages/NextIQ.html';
@@ -26,10 +24,13 @@ window.onload = function () {
 
 }
 
+
 document.addEventListener("DOMContentLoaded", function () {
     const storedanswer = sessionStorage.getItem('index');
     loadQuestion(storedanswer);
 });
+var questions;
+const http = new XMLHttpRequest();
 function loadQuestion(index) {
     http.open("GET", "../JSON.json");
     http.onload = function () {
@@ -52,8 +53,6 @@ function loadQuestion(index) {
 }
 var next = document.getElementsByClassName("nextbtn")[0];
 loadQuestion(0);
-var grade = 0;
-var gradewrong = 0;
 var Answers = JSON.parse(localStorage.getItem('answers')) || [];
 function ClickBtnChoice(choice, clickedElement) {
     var choices = document.getElementsByClassName('Choices');
@@ -80,7 +79,6 @@ function ClickBtnChoice(choice, clickedElement) {
             Answers.push(questions[index].awr3)
 
         }
-        console.log(grade);
         next.style.display = "inline";
         next.innerHTML = "next";
 
@@ -112,7 +110,6 @@ function ClickBtnChoice(choice, clickedElement) {
 var temp = sessionStorage.getItem('index') ? parseInt(sessionStorage.getItem('index')) : 0;
 var index = temp;
 function nextqus() {
-
     ++index;
     ++temp;
     sessionStorage.setItem("index", temp);
@@ -123,23 +120,23 @@ function nextqus() {
     localStorage.setItem('answers', JSON.stringify(Answers));
 }
 var countIQ = 1;
-function gradIQ() {
-    const http = new XMLHttpRequest();
+// function gradIQ() {
+//     const http = new XMLHttpRequest();
 
-    http.open("GET", "./JSON.json");
-    http.onload = function () {
-        var grades = JSON.parse(this.responseText);
-        var arrgrade = JSON.parse(localStorage.getItem('answersIQ'));
-        console.log(arrgrade)
-        for (let i = 0; i < grades.length; i++) {
-            for (let j = 0; j < arrgrade.length; j++) {
-                if (grades[i].true == arrgrade[j]) {
-                    console.log(countIQ++);
-                    countIQ++;
-                }
-            }
-        }
-    };
-    http.send();
-}
+//     http.open("GET", "./JSON.json");
+//     http.onload = function () {
+//         var grades = JSON.parse(this.responseText);
+//         var arrgrade = JSON.parse(localStorage.getItem('answersIQ'));
+//         console.log(arrgrade)
+//         for (let i = 0; i < grades.length; i++) {
+//             for (let j = 0; j < arrgrade.length; j++) {
+//                 if (grades[i].true == arrgrade[j]) {
+//                     console.log(countIQ++);
+//                     countIQ++;
+//                 }
+//             }
+//         }
+//     };
+//     http.send();
+// }
 
